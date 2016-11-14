@@ -32,3 +32,5 @@ C:\Users\Stolinas\Desktop\DesktopWorkspace\Visual Studio\TheTuringTournament\The
 C:\Users\Stolinas\Desktop\DesktopWorkspace\Visual Studio\TheTuringTournament\TheTuringTournament\bin\Windows\x86\Debug\Content\Models\pylon.xnb
 C:\Users\Stolinas\Desktop\DesktopWorkspace\Visual Studio\TheTuringTournament\TheTuringTournament\bin\Windows\x86\Debug\Content\Models\myTurret2.xnb
 C:\Users\Stolinas\Desktop\DesktopWorkspace\Visual Studio\TheTuringTournament\TheTuringTournament\obj\x86\Debug\TheTuringTournament.csprojResolveAssemblyReference.cache
+C:\Users\Stolinas\Desktop\DesktopWorkspace\Visual Studio\T3\TheTuringTournament\TheTuringTournament\obj\x86\Debug\TheTuringTournament.exe
+C:\Users\Stolinas\Desktop\DesktopWorkspace\Visual Studio\T3\TheTuringTournament\TheTuringTournament\obj\x86\Debug\TheTuringTournament.pdb

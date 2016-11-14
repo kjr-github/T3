@@ -56,64 +56,67 @@ namespace TheTuringTournament
 
         int blah = 0;
 
-        public void Update(int number)
+        public void Update()
         {
             Vector3 tempMovement = Vector3.Zero;
             Vector3 tempRotation = Vector3.Zero;
             //left
-            if (number == 1)
+
+            KeyboardState key = Keyboard.GetState();
+
+            if (key.IsKeyDown(Keys.A))
             {
+                //camera.Update(1);
                 tempMovement.X = +movement.X;
             }
-            //right
-            if (number == 2)
+            if (key.IsKeyDown(Keys.D))
             {
+                // camera.Update(2);
                 tempMovement.X = -movement.X;
             }
-            //up
-            if (number == 3)
+            if (key.IsKeyDown(Keys.W))
             {
+                // camera.Update(3);
                 tempMovement.Y = -movement.Y;
             }
-            //down
-            if (number == 4)
+            if (key.IsKeyDown(Keys.S))
             {
+                // camera.Update(4);
                 tempMovement.Y = +movement.Y;
             }
-            //backward (zoomOut)
-            if (number == 5)
+            if (key.IsKeyDown(Keys.F))
             {
+                // camera.Update(5);
                 tempMovement.Z = -movement.Z;
             }
-            //forward (zoomIn)
-            if (number == 6)
+            if (key.IsKeyDown(Keys.R))
             {
+                // camera.Update(6);
                 tempMovement.Z = +movement.Z;
             }
-            //left rotation
-            if (number == 7)
+            if (key.IsKeyDown(Keys.Q))
             {
+                //camera.Update(7);
                 tempRotation.Y = -rotation.Y;
             }
-            //right rotation
-            if (number == 8)
+            if (key.IsKeyDown(Keys.E))
             {
+                // camera.Update(8);
                 tempRotation.Y = +rotation.Y;
             }
-            //forward rotation
-            if (number == 9)
+            if (key.IsKeyDown(Keys.G))
             {
+                //camera.Update(9);
                 tempRotation.X = -rotation.X;
             }
-            //backward rotation
-            if (number == 10)
+            if (key.IsKeyDown(Keys.T))
             {
+                //camera.Update(10);
                 tempRotation.X = +rotation.X;
             }
-
-
-            if (number == 11)
+            if (key.IsKeyDown(Keys.Space))
             {
+                //camera.Update(11);
                 viewMatrix[0, 0] = 1f;
                 viewMatrix[0, 1] = 0f;
                 viewMatrix[0, 2] = 0.025f;
@@ -135,12 +138,10 @@ namespace TheTuringTournament
                 viewMatrix[3, 1] = 101f;
                 viewMatrix[3, 2] = -260f;
                 viewMatrix[3, 3] = 1.0f;
-
-                
             }
-            
-            if (number == 12)
+            if (key.IsKeyDown(Keys.LeftShift))
             {
+                //camera.Update(12);
                 viewMatrix[0, 0] = -1f;
                 viewMatrix[0, 1] = 0f;
                 viewMatrix[0, 2] = 0.0f;
@@ -162,13 +163,9 @@ namespace TheTuringTournament
                 viewMatrix[3, 1] = 90f;
                 viewMatrix[3, 2] = -215f;
                 viewMatrix[3, 3] = 1.0f;
-
-                blah = 0;
             }
-            
-         
 
-
+          
             //move camera to new position
             viewMatrix = viewMatrix * Matrix.CreateRotationX(tempRotation.X) * Matrix.CreateRotationY(tempRotation.Y) * Matrix.CreateTranslation(tempMovement);
             //update position

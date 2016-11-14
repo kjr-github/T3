@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/TheTuringTournament/TheTuringTournament/Content/Models/enemy.fbx</File>
+    <File>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/TheTuringTournament/TheTuringTournament/Content/Textures/checkerboard.png</File>
+    <File>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/TheTuringTournament/TheTuringTournament/Content/Textures/wellington.png</File>
+    <File>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/TheTuringTournament/TheTuringTournament/Content/Models/massicube.fbx</File>
+    <File>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/TheTuringTournament/TheTuringTournament/Content/Score.spritefont</File>
+    <File>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/TheTuringTournament/TheTuringTournament/Content/Textures/wellington2.png</File>
+    <File>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/TheTuringTournament/TheTuringTournament/Content/Models/myTurret.fbx</File>
+    <File>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/TheTuringTournament/TheTuringTournament/Content/Models/pylon.fbx</File>
+    <File>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/TheTuringTournament/TheTuringTournament/Content/Models/myTurret2.fbx</File>
+  </SourceFiles>
+</SourceFileCollection>

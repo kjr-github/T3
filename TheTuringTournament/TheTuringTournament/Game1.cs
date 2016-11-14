@@ -107,58 +107,8 @@ namespace TheTuringTournament
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-
-            KeyboardState key = Keyboard.GetState();
-
-            if (key.IsKeyDown(Keys.A))
-            {
-                camera.Update(1);
-            }
-            if (key.IsKeyDown(Keys.D))
-            {
-                camera.Update(2);
-            }
-            if (key.IsKeyDown(Keys.W))
-            {
-                camera.Update(3);
-            }
-            if (key.IsKeyDown(Keys.S))
-            {
-                camera.Update(4);
-            }
-            if (key.IsKeyDown(Keys.F))
-            {
-                camera.Update(5);
-            }
-            if (key.IsKeyDown(Keys.R))
-            {
-                camera.Update(6);
-            }
-            if (key.IsKeyDown(Keys.Q))
-            {
-                camera.Update(7);
-            }
-            if (key.IsKeyDown(Keys.E))
-            {
-                camera.Update(8);
-            }
-            if (key.IsKeyDown(Keys.G))
-            {
-                camera.Update(9);
-            }
-            if (key.IsKeyDown(Keys.T))
-            {
-                camera.Update(10);
-            }
-            if (key.IsKeyDown(Keys.Space))
-            {
-                camera.Update(11);
-            }
-            if (key.IsKeyDown(Keys.LeftShift))
-            {
-                camera.Update(12);
-            }
-
+            camera.Update();
+           
 
             cam_mat = camera.getView();
             // TODO: Add your update logic here
