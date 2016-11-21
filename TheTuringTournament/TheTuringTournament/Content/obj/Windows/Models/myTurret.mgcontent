@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/TheTuringTournament/TheTuringTournament/Content/Models/myTurret.fbx</SourceFile>
+  <SourceFile>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/T3/TheTuringTournament/TheTuringTournament/Content/Models/myTurret.fbx</SourceFile>
   <SourceTime>2016-11-11T05:21:19.9946365-05:00</SourceTime>
-  <DestFile>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/TheTuringTournament/TheTuringTournament/Content/bin/Windows/Models/myTurret.xnb</DestFile>
-  <DestTime>2016-11-11T06:54:08.6451451-05:00</DestTime>
+  <DestFile>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/T3/TheTuringTournament/TheTuringTournament/Content/bin/Windows/Models/myTurret.xnb</DestFile>
+  <DestTime>2016-11-21T15:51:26.5831939-05:00</DestTime>
   <Importer>FbxImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>ModelProcessor</Processor>

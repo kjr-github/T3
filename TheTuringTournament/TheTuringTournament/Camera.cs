@@ -117,6 +117,7 @@ namespace TheTuringTournament
             if (key.IsKeyDown(Keys.Space))
             {
                 //camera.Update(11);
+                //WHAT?
                 viewMatrix[0, 0] = 1f;
                 viewMatrix[0, 1] = 0f;
                 viewMatrix[0, 2] = 0.025f;

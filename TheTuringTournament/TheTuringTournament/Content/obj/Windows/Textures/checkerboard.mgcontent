@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/TheTuringTournament/TheTuringTournament/Content/Textures/checkerboard.png</SourceFile>
+  <SourceFile>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/T3/TheTuringTournament/TheTuringTournament/Content/Textures/checkerboard.png</SourceFile>
   <SourceTime>2016-07-19T21:15:30-04:00</SourceTime>
-  <DestFile>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/TheTuringTournament/TheTuringTournament/Content/bin/Windows/Textures/checkerboard.xnb</DestFile>
-  <DestTime>2016-09-30T11:48:55.7423696-04:00</DestTime>
+  <DestFile>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/T3/TheTuringTournament/TheTuringTournament/Content/bin/Windows/Textures/checkerboard.xnb</DestFile>
+  <DestTime>2016-11-21T15:51:26.112167-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
