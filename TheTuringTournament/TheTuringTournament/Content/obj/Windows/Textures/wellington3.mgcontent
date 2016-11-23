@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/T3/TheTuringTournament/TheTuringTournament/Content/Textures/wellington3.png</SourceFile>
-  <SourceTime>2016-11-21T15:58:02.0868154-05:00</SourceTime>
+  <SourceTime>2016-11-22T21:55:39.915077-05:00</SourceTime>
   <DestFile>C:/Users/Stolinas/Desktop/DesktopWorkspace/Visual Studio/T3/TheTuringTournament/TheTuringTournament/Content/bin/Windows/Textures/wellington3.xnb</DestFile>
-  <DestTime>2016-11-21T15:59:19.6132497-05:00</DestTime>
+  <DestTime>2016-11-22T21:55:45.3413874-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T02:36:08-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
