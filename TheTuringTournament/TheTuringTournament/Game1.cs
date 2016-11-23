@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -13,8 +14,10 @@ namespace TheTuringTournament
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Camera camera;
+        public float aspectRatio;
 
+
+        public Camera camera;
         Terrain landscape;
 
         private SpriteFont font;
@@ -22,9 +25,10 @@ namespace TheTuringTournament
         Matrix cam_mat;
 
 
-        public float aspectRatio;
 
-        //Vector3 cameraPosition = new Vector3(15, 10, 10);
+        VertexPositionTexture[] floorVerts;
+        Texture2D floorTexture;
+        BasicEffect floorEffect;
 
         // This is the model instance that we'll load
         // our XNB into:
@@ -32,9 +36,10 @@ namespace TheTuringTournament
         Model drone;
         Model pylon;
 
+        //Game Entities
+        Tower tower_1;
+        String tower_model = "Models\\test_tower";
 
-
-        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -57,6 +62,40 @@ namespace TheTuringTournament
 
             landscape = new Terrain(GraphicsDevice);
 
+
+
+            floorVerts = new VertexPositionTexture[6];
+            /*
+            floorVerts[0].Position = new Vector3(-20, -20, 0);
+            floorVerts[1].Position = new Vector3(-20, 20, 0);
+            floorVerts[2].Position = new Vector3(20, -20, 0);
+            */
+
+            // 400x300 size rectangle
+
+            floorVerts[0].Position = new Vector3(120, -85, -200); //front left
+            floorVerts[1].Position = new Vector3(420, -85, -200); //back left
+            floorVerts[2].Position = new Vector3(120, -85, 200);
+
+
+            floorVerts[3].Position = floorVerts[1].Position;
+            floorVerts[4].Position = new Vector3(420, -85, 200);
+            floorVerts[5].Position = floorVerts[2].Position;
+
+            int repetitions = 20;
+            // New code:
+            floorVerts[0].TextureCoordinate = new Vector2(0, 0);
+            floorVerts[1].TextureCoordinate = new Vector2(0, repetitions);
+            floorVerts[2].TextureCoordinate = new Vector2(repetitions, 0);
+
+            floorVerts[3].TextureCoordinate = floorVerts[1].TextureCoordinate;
+            floorVerts[4].TextureCoordinate = new Vector2(repetitions, repetitions);
+            floorVerts[5].TextureCoordinate = floorVerts[2].TextureCoordinate;
+
+
+            floorEffect = new BasicEffect(graphics.GraphicsDevice);
+
+
             base.Initialize();
         }
 
@@ -69,6 +108,9 @@ namespace TheTuringTournament
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            aspectRatio = graphics.GraphicsDevice.Viewport.AspectRatio;
+
+
 
             //3D assets
             model = Content.Load<Model>("Models\\enemy");
@@ -76,14 +118,20 @@ namespace TheTuringTournament
             drone = Content.Load<Model>("Models\\myTurret2");
 
 
-            aspectRatio = graphics.GraphicsDevice.Viewport.AspectRatio;
+            Vector3 bleb = new Vector3(100, 20, 120);
+
+           tower_1 = new Tower(this, bleb, tower_model);
+
+           
 
             //checkerboardTexture = this.Content.Load<Texture2D>("Textures\\checkerboard");
 
-            landscape.SetHeightMapData(Content.Load<Texture2D>("Textures\\wellington2"), Content.Load<Texture2D>("Textures\\checkerboard"));
-
+            landscape.SetHeightMapData(Content.Load<Texture2D>("Textures\\wellington3"), Content.Load<Texture2D>("Textures\\checkerboard"));
             font = Content.Load<SpriteFont>("Score");
 
+
+
+            floorTexture = Content.Load<Texture2D>("Textures\\checkerboard2");
 
 
         }
@@ -149,9 +197,12 @@ namespace TheTuringTournament
             Vector3 bleb = new Vector3(1,60,1);
             Vector3 blab = new Vector3(1, 1, 1);
 
+            DrawFloor();
 
             DrawModel(drone, blab);
-            DrawModel(pylon, bleb);
+            //DrawModel(pylon, bleb);
+
+            tower_1.Draw();
 
             DrawText();
 
@@ -162,6 +213,41 @@ namespace TheTuringTournament
 
 
 
+
+
+
+        void DrawFloor()
+        {
+
+            floorEffect.World = Matrix.Identity;
+            floorEffect.View = camera.getView();
+
+            
+            floorEffect.Projection = camera.getProjection();
+
+
+            floorEffect.TextureEnabled = true;
+            floorEffect.Texture = floorTexture;
+
+
+            foreach (var pass in floorEffect.CurrentTechnique.Passes)
+            {
+                pass.Apply();
+
+                graphics.GraphicsDevice.DrawUserPrimitives(
+                    // We’ll be rendering two trinalges
+                    PrimitiveType.TriangleList,
+                    // The array of verts that we want to render
+                    floorVerts,
+                    // The offset, which is 0 since we want to start 
+                    // at the beginning of the floorVerts array
+                    0,
+                    // The number of triangles to draw
+                    2);
+            }
+        }
+
+        
 
         void DrawModel(Model myModel, Vector3 tranVector)
         {
@@ -194,8 +280,7 @@ namespace TheTuringTournament
 
                     // 1.0f, and 1000.0f are the clipping frame parameters, currently copied from Terrain class, I believe
 
-                    effect.Projection = Matrix.CreatePerspectiveFieldOfView(
-                        fieldOfView, aspectRatio, 1.0f, 1000.0f);
+                    effect.Projection = camera.getProjection();
                 }
                 // Now that we've assigned our properties on the effects we can
                 // draw the entire mesh
@@ -205,6 +290,13 @@ namespace TheTuringTournament
             
         }
   
+
+
+
+
+
+
+
 
 
         void DrawText()
@@ -223,20 +315,7 @@ namespace TheTuringTournament
 
             //spriteBatch.DrawString(font, "I: " + System.String.Format("{0:0,00.000}", cam_direction.X) + " J: " + System.String.Format("{0:0,00.000}", cam_direction.Y) + " Z: " + System.String.Format("{0:0,00.000}", cam_direction.Z), new Vector2(550, 140), Color.Green);
 
-            /*
-            if (gamestate == 1)
-            {
-                spriteBatch.DrawString(font, "You win.", new Vector2(300, 300), Color.Black);
-            }
-            else if (gamestate == 2)
-            {
-                spriteBatch.DrawString(font, "You lost. ", new Vector2(300, 300), Color.Black);
-            }
-            else if (gamestate == 3)
-            {
-                spriteBatch.DrawString(font, "Stalemate.", new Vector2(300, 300), Color.Black);
-            }
-            */
+          
             spriteBatch.End();
 
         }
