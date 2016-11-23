@@ -71,25 +71,25 @@ namespace TheTuringTournament
             floorVerts[2].Position = new Vector3(20, -20, 0);
             */
 
-            // 400x300 size rectangle
+            // 420x320 size rectangle
 
-            floorVerts[0].Position = new Vector3(120, -85, -200); //front left
-            floorVerts[1].Position = new Vector3(420, -85, -200); //back left
-            floorVerts[2].Position = new Vector3(120, -85, 200);
+            floorVerts[0].Position = new Vector3(120, -95, -230); //front left
+            floorVerts[1].Position = new Vector3(440, -95, -230); //back left
+            floorVerts[2].Position = new Vector3(120, -95, 190);
 
 
             floorVerts[3].Position = floorVerts[1].Position;
-            floorVerts[4].Position = new Vector3(420, -85, 200);
+            floorVerts[4].Position = new Vector3(440, -95, 190);
             floorVerts[5].Position = floorVerts[2].Position;
 
             int repetitions = 20;
             // New code:
             floorVerts[0].TextureCoordinate = new Vector2(0, 0);
-            floorVerts[1].TextureCoordinate = new Vector2(0, repetitions);
-            floorVerts[2].TextureCoordinate = new Vector2(repetitions, 0);
+            floorVerts[1].TextureCoordinate = new Vector2(0, 16);
+            floorVerts[2].TextureCoordinate = new Vector2(21, 0);
 
             floorVerts[3].TextureCoordinate = floorVerts[1].TextureCoordinate;
-            floorVerts[4].TextureCoordinate = new Vector2(repetitions, repetitions);
+            floorVerts[4].TextureCoordinate = new Vector2(21, 16);
             floorVerts[5].TextureCoordinate = floorVerts[2].TextureCoordinate;
 
 
@@ -118,9 +118,9 @@ namespace TheTuringTournament
             drone = Content.Load<Model>("Models\\myTurret2");
 
 
-            Vector3 bleb = new Vector3(100, 20, 120);
+            Vector3 bleb = new Vector3(270, -45, 120);
 
-           tower_1 = new Tower(this, bleb, tower_model);
+           tower_1 = new Tower(this, bleb);
 
            
 
@@ -131,7 +131,7 @@ namespace TheTuringTournament
 
 
 
-            floorTexture = Content.Load<Texture2D>("Textures\\checkerboard2");
+            floorTexture = Content.Load<Texture2D>("Textures\\gridsquare");
 
 
         }
@@ -268,19 +268,8 @@ namespace TheTuringTournament
                     // its size is unchanged from the loaded content file.
                     effect.World = Matrix.Identity * Matrix.CreateTranslation(tranVector);
                     effect.View = camera.getView();
-                    // We want the aspect ratio of our display to match
-                    // the entire screen's aspect ratio:
-                    float aspectRatio =
-                        graphics.PreferredBackBufferWidth / (float)graphics.PreferredBackBufferHeight;
-                    // Field of view measures how wide of a view our camera has.
-                    // Increasing this value means it has a wider view, making everything
-                    // on screen smaller. This is conceptually the same as "zooming out".
-                    // It also 
-                    float fieldOfView = Microsoft.Xna.Framework.MathHelper.PiOver4;
-
-                    // 1.0f, and 1000.0f are the clipping frame parameters, currently copied from Terrain class, I believe
-
                     effect.Projection = camera.getProjection();
+                                       
                 }
                 // Now that we've assigned our properties on the effects we can
                 // draw the entire mesh

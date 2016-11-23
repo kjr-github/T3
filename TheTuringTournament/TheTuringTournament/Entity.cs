@@ -17,15 +17,18 @@ namespace TheTuringTournament
         float aspectRatio;
         Camera camera;
 
-        Model myModel;
+        public Model myModel;
         Vector3 location;
 
+        public float scale;
+
         public float modelRotationX;
+        public float modelRotationY;
 
 
        // String model_address = "Models\\pylon";
 
-        public Entity(Game1 g, Vector3 start_location, String model_address)
+        public Entity(Game1 g, Vector3 start_location)
         {
             game = g;
             aspectRatio = game.aspectRatio;
@@ -33,7 +36,7 @@ namespace TheTuringTournament
 
             location = start_location;
 
-            myModel = game.Content.Load<Model>(model_address);
+            //myModel = game.Content.Load<Model>(model_address);
 
             
         }
@@ -57,7 +60,7 @@ namespace TheTuringTournament
                     effect.EnableDefaultLighting();
                     effect.PreferPerPixelLighting = true;
 
-                    effect.World = Matrix.Identity *Matrix.CreateRotationX(modelRotationX)* Matrix.CreateTranslation(location);
+                    effect.World = Matrix.Identity * Matrix.CreateScale(scale)* Matrix.CreateRotationX(modelRotationX) *Matrix.CreateRotationY(modelRotationY)* Matrix.CreateTranslation(location);
                     effect.View = camera.getView();
                     effect.Projection = camera.getProjection();
                    
@@ -77,9 +80,13 @@ namespace TheTuringTournament
     class Tower : Entity
     {
 
-        public Tower(Game1 g, Vector3 start_location, String model_address) : base(g, start_location, model_address)
+        public Tower(Game1 g, Vector3 start_location) : base(g, start_location)
         {
+
+            myModel = g.Content.Load<Model>("Models\\test_tower");
             modelRotationX = (float)(Math.PI / 2);
+            modelRotationY = (float)(Math.PI / 2);
+            scale = 5;
         }
     }
 }
