@@ -20,6 +20,8 @@ namespace TheTuringTournament
         Model myModel;
         Vector3 location;
 
+        public float modelRotationX;
+
 
        // String model_address = "Models\\pylon";
 
@@ -33,7 +35,7 @@ namespace TheTuringTournament
 
             myModel = game.Content.Load<Model>(model_address);
 
-
+            
         }
 
 
@@ -55,15 +57,10 @@ namespace TheTuringTournament
                     effect.EnableDefaultLighting();
                     effect.PreferPerPixelLighting = true;
 
-                    effect.World = Matrix.Identity * Matrix.CreateTranslation(location);
+                    effect.World = Matrix.Identity *Matrix.CreateRotationX(modelRotationX)* Matrix.CreateTranslation(location);
                     effect.View = camera.getView();
-
-                    float fieldOfView = Microsoft.Xna.Framework.MathHelper.PiOver4;
-
-                    // 1.0f, and 1000.0f are the clipping frame parameters, currently copied from Terrain class, I believe
-
-                    effect.Projection = Matrix.CreatePerspectiveFieldOfView(
-                        fieldOfView, aspectRatio, 1.0f, 1000.0f);
+                    effect.Projection = camera.getProjection();
+                   
                 }
                 // Draw the mesh, using the effects set above.
                 mesh.Draw();
@@ -82,7 +79,7 @@ namespace TheTuringTournament
 
         public Tower(Game1 g, Vector3 start_location, String model_address) : base(g, start_location, model_address)
         {
-
+            modelRotationX = (float)(Math.PI / 2);
         }
     }
 }

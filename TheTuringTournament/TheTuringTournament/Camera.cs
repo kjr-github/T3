@@ -52,6 +52,10 @@ namespace TheTuringTournament
             return terrainMatrix;
         }
 
+        public Matrix getProjection()
+        {
+            return projectionMatrix;
+        }
        
 
         int blah = 0;
@@ -84,12 +88,12 @@ namespace TheTuringTournament
                 // camera.Update(4);
                 tempMovement.Y = +movement.Y;
             }
-            if (key.IsKeyDown(Keys.F))
+            if (key.IsKeyDown(Keys.Down))
             {
                 // camera.Update(5);
                 tempMovement.Z = -movement.Z;
             }
-            if (key.IsKeyDown(Keys.R))
+            if (key.IsKeyDown(Keys.Up))
             {
                 // camera.Update(6);
                 tempMovement.Z = +movement.Z;
@@ -208,87 +212,3 @@ namespace TheTuringTournament
 
     }
 }
-
-        // We need this to calculate the aspectRatio
-        // in the ProjectionMatrix property.
-        /*
-        GraphicsDevice graphicsDevice;
-
-        Vector3 position = new Vector3(0, 10, 40);
-
-        float lat_angle;
-        float med_angle;
-        
-        */
-
-        /*
-        public Matrix ViewMatrix
-        {
-            get
-            {
-                var lookAtVector = new Vector3(0, -1, -.5f);
-                //  var lookAtVector = new Vector3(0,0,0);
-                // We'll create a rotation matrix using our angle
-
-                var angleMatrix = Matrix.CreateFromYawPitchRoll(0, med_angle, lat_angle);
-                //var rotationMatrix = Matrix.CreateRotationX(med_angle);
-                //var medialrotationMatrix = Matrix.CreateRotationX(angle);
-                // Then we'll modify the vector using this matrix:
-                lookAtVector = Vector3.Transform(lookAtVector, angleMatrix);
-                lookAtVector += position;
-
-
-
-
-                var upVector = Vector3.UnitZ;
-
-                return Matrix.CreateLookAt(position, lookAtVector, upVector);
-            }
-        }
-
-        public Matrix ProjectionMatrix
-        {
-            get
-            {
-                float fieldOfView = Microsoft.Xna.Framework.MathHelper.PiOver4;
-                float nearClipPlane = 1;
-                float farClipPlane = 200;
-                float aspectRatio = graphicsDevice.Viewport.Width / (float)graphicsDevice.Viewport.Height;
-
-                return Matrix.CreatePerspectiveFieldOfView(
-                    fieldOfView, aspectRatio, nearClipPlane, farClipPlane);
-            }
-        }
-
-        public Camera(GraphicsDevice graphicsDevice)
-        {
-            this.graphicsDevice = graphicsDevice;
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            KeyboardState newState = Keyboard.GetState();
-
-            if (newState.IsKeyDown(Keys.Left) && lat_angle >= -1)
-            {
-               lat_angle -= 0.01f;
-            }
-
-            if (newState.IsKeyDown(Keys.Right) && lat_angle <= 1)
-            {
-               lat_angle += 0.01f;
-            }
-
-            if (newState.IsKeyDown(Keys.Down) && med_angle <= 1)
-            {
-                med_angle += 0.01f;
-            }
-
-            if (newState.IsKeyDown(Keys.Up) && med_angle >= -.01)
-            {
-                med_angle -= 0.01f;
-            }
-        }
-    }
-}
-*/
