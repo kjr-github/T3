@@ -15,30 +15,29 @@ namespace TheTuringTournament
         SpriteBatch spriteBatch;
 
         public float aspectRatio;
-
+        private SpriteFont font;
 
         public Camera camera;
         Terrain landscape;
-
-        private SpriteFont font;
-
         Matrix cam_mat;
 
+        //Plane textures
+        Plane grid_floor;
+        Plane[] highlighted = new Plane[6];
+        
+
+        //Game Entities
+        Tower t1;
+        Tower t2;
 
 
-        VertexPositionTexture[] floorVerts;
-        Texture2D floorTexture;
-        BasicEffect floorEffect;
+
 
         // This is the model instance that we'll load
         // our XNB into:
-        Model model;
         Model drone;
-        Model pylon;
 
-        //Game Entities
-        Tower tower_1;
-        String tower_model = "Models\\test_tower";
+
 
         public Game1()
         {
@@ -63,37 +62,97 @@ namespace TheTuringTournament
             landscape = new Terrain(GraphicsDevice);
 
 
+            //Initial position for Tower entity
+            Vector3 tower1_start = new Vector3(290, -55, 180);
+            t1 = new Tower(this, tower1_start);
 
-            floorVerts = new VertexPositionTexture[6];
-            /*
-            floorVerts[0].Position = new Vector3(-20, -20, 0);
-            floorVerts[1].Position = new Vector3(-20, 20, 0);
-            floorVerts[2].Position = new Vector3(20, -20, 0);
-            */
+            t1.rotate_X((float)(Math.PI / 2));
+            t1.rotate_Y((float)(Math.PI / 2));
+            
+            // Second tower
+            Vector3 tower2_start = new Vector3(270, -55, -220);
+            t2 = new Tower(this, tower2_start);
 
-            // 420x320 size rectangle
+            t2.rotate_X((float)(Math.PI / 2));
+            t2.rotate_Y(-(float)(Math.PI / 2));
 
+
+
+
+
+            //Setting up the grid_floor plane
+            grid_floor = new Plane(graphics);
+
+            VertexPositionTexture[] floorVerts = new VertexPositionTexture[6];
+            // 420x320 size rectangle divided into 21x16 amount of 20x20 squares.
             floorVerts[0].Position = new Vector3(120, -95, -230); //front left
             floorVerts[1].Position = new Vector3(440, -95, -230); //back left
-            floorVerts[2].Position = new Vector3(120, -95, 190);
-
-
+            floorVerts[2].Position = new Vector3(120, -95, 190); // front right              
+            floorVerts[4].Position = new Vector3(440, -95, 190); //back right 
             floorVerts[3].Position = floorVerts[1].Position;
-            floorVerts[4].Position = new Vector3(440, -95, 190);
-            floorVerts[5].Position = floorVerts[2].Position;
-
-            int repetitions = 20;
-            // New code:
+            floorVerts[5].Position = floorVerts[2].Position;              
+            // Mapping the texture
             floorVerts[0].TextureCoordinate = new Vector2(0, 0);
             floorVerts[1].TextureCoordinate = new Vector2(0, 16);
             floorVerts[2].TextureCoordinate = new Vector2(21, 0);
-
             floorVerts[3].TextureCoordinate = floorVerts[1].TextureCoordinate;
             floorVerts[4].TextureCoordinate = new Vector2(21, 16);
             floorVerts[5].TextureCoordinate = floorVerts[2].TextureCoordinate;
+            
+            grid_floor.setVerts(floorVerts);
 
 
-            floorEffect = new BasicEffect(graphics.GraphicsDevice);
+
+
+
+            for (int i = 0; i < highlighted.Length; i++)
+            {
+                highlighted[i] = new Plane(graphics);
+            }
+
+            //highlighted = new Plane(graphics);
+
+
+            floorVerts[0].Position = new Vector3(300, -94.9f, -230); //front left
+            floorVerts[1].Position = new Vector3(320, -94.9f, -230); //back left
+            floorVerts[2].Position = new Vector3(300, -94.9f, 190); // front right              
+            floorVerts[4].Position = new Vector3(320, -94.9f, 190); //back right 
+            floorVerts[3].Position = floorVerts[1].Position;
+            floorVerts[5].Position = floorVerts[2].Position;
+            // Mapping the texture
+            floorVerts[0].TextureCoordinate = new Vector2(0, 0);
+            floorVerts[1].TextureCoordinate = new Vector2(0, 1);
+            floorVerts[2].TextureCoordinate = new Vector2(21, 0);
+            floorVerts[3].TextureCoordinate = floorVerts[1].TextureCoordinate;
+            floorVerts[4].TextureCoordinate = new Vector2(21, 1);
+            floorVerts[5].TextureCoordinate = floorVerts[2].TextureCoordinate;
+
+            highlighted[0].setVerts(floorVerts);
+            
+
+            floorVerts[0].Position = new Vector3(360, -94.9f, -230); //front left
+            floorVerts[1].Position = new Vector3(380, -94.9f, -230); //back left
+            floorVerts[2].Position = new Vector3(360, -94.9f, 190); // front right              
+            floorVerts[4].Position = new Vector3(380, -94.9f, 190); //back right 
+            floorVerts[3].Position = floorVerts[1].Position;
+            floorVerts[5].Position = floorVerts[2].Position;
+
+            highlighted[1].setVerts(floorVerts);
+
+
+            floorVerts[0].Position.X = 420;
+            //= new Vector3(420, -94.9f, -230); //front left
+            floorVerts[1].Position.X = 440;
+            //new Vector3(440, -94.9f, -230); //back left
+            floorVerts[2].Position.X = 420;
+            //new Vector3(420, -94.9f, 190); // front right              
+            floorVerts[4].Position.X = 440;
+            //= new Vector3(440, -94.9f, 190); //back right 
+            floorVerts[3].Position = floorVerts[1].Position;
+            floorVerts[5].Position = floorVerts[2].Position;
+
+            highlighted[2].setVerts(floorVerts);
+
 
 
             base.Initialize();
@@ -113,14 +172,10 @@ namespace TheTuringTournament
 
 
             //3D assets
-            model = Content.Load<Model>("Models\\enemy");
-            pylon = Content.Load<Model>("Models\\pylon");
+          
             drone = Content.Load<Model>("Models\\myTurret2");
 
 
-            Vector3 bleb = new Vector3(270, -45, 120);
-
-           tower_1 = new Tower(this, bleb);
 
            
 
@@ -129,10 +184,16 @@ namespace TheTuringTournament
             landscape.SetHeightMapData(Content.Load<Texture2D>("Textures\\wellington3"), Content.Load<Texture2D>("Textures\\checkerboard"));
             font = Content.Load<SpriteFont>("Score");
 
+            
+          
+            grid_floor.texture = Content.Load<Texture2D>("Textures\\gridsquare");
 
+            for (int i = 0; i < highlighted.Length; i++)
+            {
+                highlighted[i].texture = Content.Load<Texture2D>("Textures\\hgridsquare");
+            }
 
-            floorTexture = Content.Load<Texture2D>("Textures\\gridsquare");
-
+            //highlighted.texture = Content.Load<Texture2D>("Textures\\hgridsquare");
 
         }
 
@@ -191,18 +252,29 @@ namespace TheTuringTournament
             //GraphicsDevice.SamplerStates[0].AddressU = TextureAddressMode.Wrap;
             //GraphicsDevice.SamplerStates[0].AddressV = TextureAddressMode.Wrap;
 
+
+
             camera.Draw(landscape);
+         
+            grid_floor.Draw(camera.getView(), camera.getProjection());
 
-           
-            Vector3 bleb = new Vector3(1,60,1);
+            for (int i = 0; i < highlighted.Length; i++)
+            {
+                highlighted[i].Draw(camera.getView(), camera.getProjection());
+            }
+
+
+            //highlighted.Draw(camera.getView(), camera.getProjection());
+
+
+            
+            t1.Draw();
+            t2.Draw();
+
+
             Vector3 blab = new Vector3(1, 1, 1);
-
-            DrawFloor();
-
             DrawModel(drone, blab);
-            //DrawModel(pylon, bleb);
 
-            tower_1.Draw();
 
             DrawText();
 
@@ -215,39 +287,6 @@ namespace TheTuringTournament
 
 
 
-
-        void DrawFloor()
-        {
-
-            floorEffect.World = Matrix.Identity;
-            floorEffect.View = camera.getView();
-
-            
-            floorEffect.Projection = camera.getProjection();
-
-
-            floorEffect.TextureEnabled = true;
-            floorEffect.Texture = floorTexture;
-
-
-            foreach (var pass in floorEffect.CurrentTechnique.Passes)
-            {
-                pass.Apply();
-
-                graphics.GraphicsDevice.DrawUserPrimitives(
-                    // We’ll be rendering two trinalges
-                    PrimitiveType.TriangleList,
-                    // The array of verts that we want to render
-                    floorVerts,
-                    // The offset, which is 0 since we want to start 
-                    // at the beginning of the floorVerts array
-                    0,
-                    // The number of triangles to draw
-                    2);
-            }
-        }
-
-        
 
         void DrawModel(Model myModel, Vector3 tranVector)
         {
@@ -279,14 +318,7 @@ namespace TheTuringTournament
             
         }
   
-
-
-
-
-
-
-
-
+        
 
         void DrawText()
         {

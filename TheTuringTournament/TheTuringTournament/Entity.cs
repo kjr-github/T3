@@ -41,6 +41,15 @@ namespace TheTuringTournament
             
         }
 
+        public void rotate_X(float value)
+        {
+            modelRotationX += value;
+        }
+
+        public void rotate_Y(float value)
+        {
+            modelRotationY += value;
+        }
 
         public void Draw()
         {
@@ -79,14 +88,31 @@ namespace TheTuringTournament
 
     class Tower : Entity
     {
+        int health;
 
         public Tower(Game1 g, Vector3 start_location) : base(g, start_location)
         {
 
             myModel = g.Content.Load<Model>("Models\\test_tower");
-            modelRotationX = (float)(Math.PI / 2);
-            modelRotationY = (float)(Math.PI / 2);
+           // modelRotationX = (float)(Math.PI / 2);
+         //   modelRotationY = (float)(Math.PI / 2);
             scale = 5;
+            health = 300;
         }
+
+        public int getHealth()
+        {
+            return health;
+        }
+
+
+        public void takeDamage(int dmg)
+        {
+            health -= dmg;
+        }
+
+
+
+       
     }
 }

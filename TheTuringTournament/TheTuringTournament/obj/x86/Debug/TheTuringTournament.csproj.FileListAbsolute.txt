@@ -70,3 +70,4 @@ C:\Users\Stolinas\Desktop\DesktopWorkspace\Visual Studio\T3\TheTuringTournament\
 C:\Users\Stolinas\Desktop\DesktopWorkspace\Visual Studio\T3\TheTuringTournament\TheTuringTournament\bin\Windows\x86\Debug\Content\Textures\checkerboard2.xnb
 C:\Users\Stolinas\Desktop\DesktopWorkspace\Visual Studio\T3\TheTuringTournament\TheTuringTournament\obj\x86\Debug\TheTuringTournament.csprojResolveAssemblyReference.cache
 C:\Users\Stolinas\Desktop\DesktopWorkspace\Visual Studio\T3\TheTuringTournament\TheTuringTournament\bin\Windows\x86\Debug\Content\Textures\gridsquare.xnb
+C:\Users\Stolinas\Desktop\DesktopWorkspace\Visual Studio\T3\TheTuringTournament\TheTuringTournament\bin\Windows\x86\Debug\Content\Textures\hgridsquare.xnb
