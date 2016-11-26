@@ -58,7 +58,7 @@ namespace TheTuringTournament
         }
        
 
-        int blah = 0;
+       
 
         public void Update()
         {
@@ -68,6 +68,7 @@ namespace TheTuringTournament
 
             KeyboardState key = Keyboard.GetState();
 
+            
             if (key.IsKeyDown(Keys.A))
             {
                 //camera.Update(1);

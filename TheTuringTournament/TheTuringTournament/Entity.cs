@@ -13,12 +13,12 @@ namespace TheTuringTournament
     class Entity
     {
 
-        Game1 game;
+        public Game1 game;
         float aspectRatio;
         Camera camera;
 
         public Model myModel;
-        Vector3 location;
+        public Vector3 location;
 
         public float scale;
 
@@ -89,6 +89,7 @@ namespace TheTuringTournament
     class Tower : Entity
     {
         int health;
+        List<Drone> drones;
 
         public Tower(Game1 g, Vector3 start_location) : base(g, start_location)
         {
@@ -98,6 +99,8 @@ namespace TheTuringTournament
          //   modelRotationY = (float)(Math.PI / 2);
             scale = 5;
             health = 300;
+
+            drones = new List<Drone>();
         }
 
         public int getHealth()
@@ -111,8 +114,42 @@ namespace TheTuringTournament
             health -= dmg;
         }
 
-
+        public void spawnDrone(Vector3 loc)
+        {
+            drones.Add(new Drone(game, loc, this));
+        }
 
        
     }
+
+
+    class Drone : Entity
+    {
+        int payload;
+
+        public Drone(Game1 g, Vector3 start_location, Tower t) : base(g, start_location)
+        {
+
+            myModel = g.Content.Load<Model>("Models\\enemy");
+            // modelRotationX = (float)(Math.PI / 2);
+            //   modelRotationY = (float)(Math.PI / 2);
+            //scale = 5;
+            payload = 10;
+        }
+
+        public void Update(float direction, Vector3 destination)
+        {
+            
+        }
+
+
+        public int getPayload()
+        {
+            return payload;
+        }
+
+
+
+    }
+
 }

@@ -57,6 +57,10 @@ namespace TheTuringTournament
         protected override void Initialize()
         {
 
+            graphics.PreferredBackBufferWidth = 1080;
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.ApplyChanges();
+
             camera = new Camera(new Vector3(-100, 0, 0), Vector3.Zero, new Vector3(2, 2, 2), new Vector3(0, -100, 256));
 
             landscape = new Terrain(GraphicsDevice);
@@ -120,12 +124,12 @@ namespace TheTuringTournament
             floorVerts[3].Position = floorVerts[1].Position;
             floorVerts[5].Position = floorVerts[2].Position;
             // Mapping the texture
-            floorVerts[0].TextureCoordinate = new Vector2(0, 0);
+          //  floorVerts[0].TextureCoordinate = new Vector2(0, 0);
             floorVerts[1].TextureCoordinate = new Vector2(0, 1);
-            floorVerts[2].TextureCoordinate = new Vector2(21, 0);
+           // floorVerts[2].TextureCoordinate = new Vector2(21, 0);
             floorVerts[3].TextureCoordinate = floorVerts[1].TextureCoordinate;
             floorVerts[4].TextureCoordinate = new Vector2(21, 1);
-            floorVerts[5].TextureCoordinate = floorVerts[2].TextureCoordinate;
+            //floorVerts[5].TextureCoordinate = floorVerts[2].TextureCoordinate;
 
             highlighted[0].setVerts(floorVerts);
             
@@ -323,7 +327,14 @@ namespace TheTuringTournament
         void DrawText()
         {
             spriteBatch.Begin();
-            // spriteBatch.DrawString(font, "Ship Integrity: " + health, new Vector2(50, 50), Color.Black);
+            
+            
+            spriteBatch.DrawString(font, "Tower 1 " , new Vector2(25, 25), Color.Black);
+            spriteBatch.DrawString(font, "  " + t1.getHealth(), new Vector2(25, 45), Color.Black);
+
+            spriteBatch.DrawString(font, "Tower 2 ", new Vector2(1000, 25), Color.Black);
+            spriteBatch.DrawString(font, "  " + t2.getHealth(), new Vector2(1000, 45), Color.Black);
+
             //spriteBatch.DrawString(font, "Ammunition: " + ammo, new Vector2(50, 80), Color.Black);
             //spriteBatch.DrawString(font, "Enemy Durability: " + score, new Vector2(550, 50), Color.Black);
             //spriteBatch.DrawString(font, "Enemy Ammunition: " + orbs, new Vector2(550, 80), Color.Black);
